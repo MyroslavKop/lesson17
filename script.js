@@ -1,53 +1,39 @@
 "use strict";
+import { addToDo } from "./addtodo.js";
 
-// Общие DOM переменные
-let myForm = document.forms.myForm;
-let { textField, btn } = document.forms.myForm.elements;
+// __________________________________________________________
+let userMessage = document.forms.userMessage;
+let { textField } = document.forms.userMessage.elements;
 let list = document.getElementById("list");
 let errorMessage = document.querySelector(".error-message");
 
-myForm.onsubmit = (event) => {
+// __________________________________________________________
+userMessage.onsubmit = (event) => {
   event.preventDefault();
-
-  // Проверка на пустую строку
   if (textField.value.trim() === "") {
     textField.classList.add("error");
     errorMessage.innerHTML = "Please fill out this field";
     return;
   }
-
-  // Создание элементов и добавляние к ним классов
-  let listItem = document.createElement("li");
-  let listBtn = document.createElement("button");
-  listItem.classList.add("listItem");
-  listBtn.classList.add("listBtn");
-
-  // Добавление текстовый значений
-  listBtn.innerHTML = "Delete";
-  listItem.innerHTML = textField.value;
-
-  // Удаляем класс success и очищаем input после нажатия на Add
+  addToDo(textField.value);
   textField.value = "";
   textField.classList.remove("success");
-
-  // Добавление элементов в HTML структуру
-  list.append(listItem);
-  listItem.append(listBtn);
-
-  // Событие по удалению строк при клике на DELETE
-  listBtn.addEventListener("click", () => {
-    listItem.remove();
-  });
 };
 
+// __________________________________________________________
+list.addEventListener("click", (event) => {
+  let removeBtn = event.target.className === "listBtn";
+  if (removeBtn) {
+    event.target.closest(".listItem").remove();
+  }
+});
+
+// __________________________________________________________
 textField.oninput = () => {
-  // Если при вводе input содержит класс error, то удаляем его
   if (textField.classList.contains("error")) {
     textField.classList.remove("error");
     errorMessage.innerHTML = "";
   }
-
-  // Если длина строки > 0, то добавляем класс success, иначе удаляем
   if (textField.value.trim().length > 0) {
     textField.classList.add("success");
   } else {

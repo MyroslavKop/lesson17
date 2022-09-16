@@ -31,9 +31,9 @@ form {
 }
 #myInput {
   background-color: white;
-  outline: none;
   height: 25px;
   border-radius: 3px;
+  border: white;
 }
 .myBtn {
   background-color: #f6df9c;
@@ -56,7 +56,7 @@ form {
   align-items: center;
 }
 .error {
-  border: 2px solid red;
+  outline: 3px solid red;
   box-shadow: 1px 3px 51px -8px rgba(255, 0, 0, 0.75);
   -webkit-box-shadow: 1px 3px 51px -8px rgba(255, 0, 0, 0.75);
   -moz-box-shadow: 1px 3px 51px -8px rgba(255, 0, 0, 0.75);
@@ -68,5 +68,5 @@ form {
   font-weight: 600;
 }
 .success {
-  border: 2px solid rgb(11, 201, 11);
+  outline: 3px solid rgb(9, 214, 9);
 }
