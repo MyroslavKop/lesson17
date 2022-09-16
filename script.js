@@ -16,7 +16,7 @@ userMessage.onsubmit = (event) => {
     return;
   }
   addToDo(textField.value);
-  textField.value = "";
+  userMessage.reset();
   textField.classList.remove("success");
 };
 
